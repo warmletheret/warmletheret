@@ -2,12 +2,13 @@
  * @Author       : YH000354
  * @Date         : 2022-04-01 18:18:07
  * @LastEditors  : YH000354
- * @LastEditTime : 2022-06-14 16:04:54
+ * @LastEditTime : 2022-06-14 16:30:56
  * @FilePath     : \warmletheret_website\src\views\home\index.vue
 -->
 <template>
   <div class="home_page">
     <!-- 方案1 -->
+    <!-- test -->
     <div class="background_image">
       <img
         src="@/assets/image/home_jewelry/items_Slides_A_04.png"
