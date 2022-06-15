@@ -2,7 +2,7 @@
  * @Author       : YH000354
  * @Date         : 2022-03-30 18:34:21
  * @LastEditors  : YH000354
- * @LastEditTime : 2022-06-09 15:58:48
+ * @LastEditTime : 2022-06-15 15:22:44
  * @FilePath     : \warmletheret_website\src\router\index.ts
  */
 import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router'
@@ -26,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
   },
 ]
 const router = createRouter({
-  history: createWebHashHistory('/'),
+  history: createWebHashHistory('/warmletheret'),
   routes,
   scrollBehavior(to, from, savedPosition) {
     return {
