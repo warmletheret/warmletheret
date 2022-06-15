@@ -2,7 +2,7 @@
  * @Author       : YH000354
  * @Date         : 2022-04-01 18:18:07
  * @LastEditors  : YH000354
- * @LastEditTime : 2022-06-14 16:30:56
+ * @LastEditTime : 2022-06-15 15:17:36
  * @FilePath     : \warmletheret_website\src\views\home\index.vue
 -->
 <template>
@@ -14,15 +14,11 @@
         src="@/assets/image/home_jewelry/items_Slides_A_04.png"
         id="jewelry_A04"
       />
-      <img
-        src="@/assets/image/home_jewelry/items_Slides_B_02.png"
-        id="jewelry_B02"
-      />
+
       <img
         src="@/assets/image/home_jewelry/items_Slides_A_02.png"
         id="jewelry_A02"
       />
-
       <img
         src="@/assets/image/home_jewelry/items_Slides_A_08.png"
         id="jewelry_A08"
@@ -38,12 +34,19 @@
         id="jewelry_A14"
       />
       <img
+        src="@/assets/image/home_jewelry/items_Slides_B_02.png"
+        id="jewelry_B02"
+      />
+      <img
         src="@/assets/image/home_jewelry/items_Slides_B_05.png"
         id="jewelry_B05"
       />
       <img
         src="@/assets/image/home_jewelry/items_Slides_B_06.png"
         id="jewelry_B06"
+        @mouseenter="mouseenterShow"
+        @mousemove="mouseenterMove"
+        @mouseleave="mouseenterHide"
       />
       <img
         src="@/assets/image/home_jewelry/items_Slides_B_08.png"
@@ -82,17 +85,60 @@
         id="jewelry_B27"
       />
     </div>
+    <div
+      ref="hoverShow"
+      class="hover_show"
+      v-if="hoverSwtich"
+      :style="`left:${hoverShowX + 10}px;top:${hoverShowY + 10}px`"
+    >
+      <Swiper :list="list"></Swiper>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+import Swiper from '../../../src/components/swiper/swiper.vue'
+import { onMounted, ref, reactive, nextTick } from 'vue'
+//获取dom
 
-<script lang="ts">
-export default {
-  name: 'home',
-  methods: {},
-  mounted() {},
+let hoverShow = ref(null)
+let hoverShowX = ref(0)
+let hoverShowY = ref(0)
+let hoverSwtich = ref(false)
+let list = ref([
+  {
+    imgUrl: new URL(
+      '../../assets/image/hover_image/A04/A04_1.png',
+      import.meta.url,
+    ).href,
+  },
+  {
+    imgUrl: new URL(
+      '../../assets/image/hover_image/A04/A04_2.png',
+      import.meta.url,
+    ).href,
+  },
+  {
+    imgUrl: new URL(
+      '../../assets/image/hover_image/A04/A04_3.png',
+      import.meta.url,
+    ).href,
+  },
+])
+function mouseenterShow(e) {
+  hoverSwtich.value = true
 }
+function mouseenterMove(e) {
+  let { x, y } = e
+  hoverShowX.value = x
+  hoverShowY.value = y
+}
+function mouseenterHide(e) {
+  hoverSwtich.value = false
+}
+// 狗子函数mounted
+console.log('hoverShow', hoverShow)
+// return { hoverSwtich }
 </script>
 
 <style lang="less" scoped>
@@ -109,6 +155,9 @@ export default {
     // height: 100vh;
     position: relative;
     overflow: hidden;
+    img {
+      cursor: pointer;
+    }
     #jewelry_A02 {
       position: absolute;
       top: 1px;
@@ -194,6 +243,18 @@ export default {
       right: 350px;
       bottom: 186px;
     }
+  }
+  .hover_show {
+    position: fixed;
+    // border: 1px solid black;
+    // top: 0;
+    // left: 100px;
+    // width: 300px;
+    // height: 600px;
+    // /deep/ img {
+    //   width: 300px;
+    //   height: 400px;
+    // }
   }
 }
 </style>
