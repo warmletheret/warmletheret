@@ -26,7 +26,8 @@ const routes: Array<RouteRecordRaw> = [
   },
 ]
 const router = createRouter({
-  history: createWebHashHistory('/warmletheret'),
+  // history: createWebHashHistory('/warmletheret'),
+  history: createWebHashHistory('/'),
   routes,
   scrollBehavior(to, from, savedPosition) {
     return {
