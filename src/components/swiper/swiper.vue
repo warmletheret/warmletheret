@@ -7,25 +7,23 @@
         v-for="(item, index) in list"
         :key="item.id"
       >
-        <RouterLink to="/">
-          <img :src="item.imgUrl" alt="" />
-        </RouterLink>
+        <img :src="item.imgUrl" alt="" />
       </li>
     </ul>
-    <!-- <a href="javascript:;" class="carousel-btn prev" @click="lastPage"
-      ><i class="iconfont icon-angle-left"></i
-    ></a>
-    <a href="javascript:;" class="carousel-btn next" @click="nextPage"
-      ><i class="iconfont icon-angle-right"></i
-    ></a> -->
-    <!-- <div class="carousel-indicator">
+    <a href="javascript:;" class="carousel-btn prev" @click="lastPage">
+      <img class="icon_left" src="@/assets/icon/arrow-left-bold.png" />
+    </a>
+    <a href="javascript:;" class="carousel-btn next" @click="nextPage">
+      <img class="icon_right" src="@/assets/icon/arrow-right-bold.png" />
+    </a>
+    <div class="carousel-indicator">
       <span
         @click="indexid = i - 1"
         v-for="i in list.length"
         :key="i"
         :class="{ active: indexid === i - 1 }"
       ></span>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -118,16 +116,18 @@ export default {
 </script>
 <style scoped lang="less">
 .xtx-carousel {
+  width: 404px;
+  height: 518px;
+  background-color: white;
   // width: 100%;
   // height: 100%;
-  min-width: 300px;
-  min-height: 150px;
   position: relative;
   .carousel {
     &-body {
       width: 100%;
       height: 100%;
       list-style: none;
+      margin: 0;
     }
     &-item {
       width: 100%;
@@ -142,8 +142,8 @@ export default {
         z-index: 1;
       }
       img {
-        // width: 100%;
-        // height: 100%;
+        width: 100%;
+        height: 100%;
       }
     }
     &-indicator {
@@ -155,16 +155,15 @@ export default {
       text-align: center;
       span {
         display: inline-block;
-        width: 12px;
-        height: 12px;
+        width: 8px;
+        height: 8px;
         background: rgba(0, 0, 0, 0.2);
         border-radius: 50%;
-        cursor: pointer;
         ~ span {
           margin-left: 12px;
         }
         &.active {
-          background: #fff;
+          background: #c8ae88;
         }
       }
     }
@@ -181,11 +180,27 @@ export default {
       line-height: 44px;
       opacity: 0;
       transition: all 0.5s;
+      .icon_left {
+        width: 30px;
+        height: 30px;
+        margin-left: -5px;
+      }
+      .icon_right {
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+      }
       &.prev {
         left: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       &.next {
         right: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

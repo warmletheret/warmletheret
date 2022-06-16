@@ -2,7 +2,7 @@
  * @Author       : YH000354
  * @Date         : 2022-04-01 18:18:07
  * @LastEditors  : YH000354
- * @LastEditTime : 2022-06-15 15:17:36
+ * @LastEditTime : 2022-06-16 15:13:22
  * @FilePath     : \warmletheret_website\src\views\home\index.vue
 -->
 <template>
@@ -44,9 +44,7 @@
       <img
         src="@/assets/image/home_jewelry/items_Slides_B_06.png"
         id="jewelry_B06"
-        @mouseenter="mouseenterShow"
-        @mousemove="mouseenterMove"
-        @mouseleave="mouseenterHide"
+        @click="mouseenterShow"
       />
       <img
         src="@/assets/image/home_jewelry/items_Slides_B_08.png"
@@ -85,14 +83,16 @@
         id="jewelry_B27"
       />
     </div>
-    <div
-      ref="hoverShow"
-      class="hover_show"
-      v-if="hoverSwtich"
-      :style="`left:${hoverShowX + 10}px;top:${hoverShowY + 10}px`"
-    >
-      <Swiper :list="list"></Swiper>
-    </div>
+    <transition name="bounce">
+      <div
+        ref="hoverShow"
+        class="hover_show"
+        v-show="hoverSwtich"
+        :style="`left:${hoverShowX}px;top:${hoverShowY}px`"
+      >
+        <Swiper :list="list"></Swiper>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -100,7 +100,6 @@
 import Swiper from '../../../src/components/swiper/swiper.vue'
 import { onMounted, ref, reactive, nextTick } from 'vue'
 //获取dom
-
 let hoverShow = ref(null)
 let hoverShowX = ref(0)
 let hoverShowY = ref(0)
@@ -126,25 +125,25 @@ let list = ref([
   },
 ])
 function mouseenterShow(e) {
-  hoverSwtich.value = true
-}
-function mouseenterMove(e) {
-  let { x, y } = e
-  hoverShowX.value = x
+  hoverSwtich.value = !hoverSwtich.value
+  console.log('e', e)
+  let { x, y, offsetWidth } = e.target
+  hoverShowX.value = x + offsetWidth - 20
   hoverShowY.value = y
 }
 function mouseenterHide(e) {
+  if (e.toElement.className === 'hover_show' || e.toElement.nodeName === 'IMG')
+    return
   hoverSwtich.value = false
 }
-// 狗子函数mounted
-console.log('hoverShow', hoverShow)
-// return { hoverSwtich }
 </script>
 
 <style lang="less" scoped>
 .home_page {
   height: 100%;
   width: 100%;
+  // min-width: 1920px;
+  // min-height: 1080px;
   .background_image {
     background: url('../../assets/image/WarmLetheret_Background.png') 100% 100%
       no-repeat;
@@ -155,106 +154,163 @@ console.log('hoverShow', hoverShow)
     // height: 100vh;
     position: relative;
     overflow: hidden;
-    img {
-      cursor: pointer;
-    }
+
     #jewelry_A02 {
       position: absolute;
       top: 1px;
       right: 370px;
+      width: 410px;
+      height: 305px;
     }
     #jewelry_A04 {
       position: absolute;
-      top: 62px;
-      left: 0px;
+      width: 454px;
+      height: 301px;
+      top: 63px;
+      right: 1464px;
     }
     #jewelry_A08 {
       position: absolute;
       right: 1270px;
       bottom: 500px;
+      width: 296px;
+      height: 217px;
     }
     #jewelry_A12 {
       position: absolute;
       right: 0;
       bottom: 0;
+      width: 432px;
+      height: 333px;
     }
     #jewelry_A14 {
       position: absolute;
       right: 543px;
       bottom: 0;
+      width: 505px;
+      height: 288px;
     }
     #jewelry_B02 {
       position: absolute;
       top: 0px;
-      left: 453px;
+      right: 1137px;
+      width: 328px;
+      height: 366px;
     }
     #jewelry_B05 {
       position: absolute;
       right: 0px;
       bottom: 636px;
+      width: 498px;
+      height: 251px;
     }
     #jewelry_B06 {
       position: absolute;
       right: 890px;
       bottom: 542px;
+      width: 247px;
+      height: 219px;
     }
     #jewelry_B08 {
       position: absolute;
       right: 498px;
       bottom: 540px;
+      width: 282px;
+      height: 222px;
     }
     #jewelry_B11 {
       position: absolute;
-      left: 61px;
+      right: 1587px;
       bottom: 492px;
+      width: 271px;
+      height: 192px;
     }
     #jewelry_B13 {
       position: absolute;
       right: 262px;
       bottom: 378px;
+      width: 236px;
+      height: 258px;
     }
     #jewelry_B14 {
       position: absolute;
       right: 29px;
       bottom: 413px;
+      width: 233px;
+      height: 224px;
     }
     #jewelry_B17 {
       position: absolute;
       right: 1137px;
       bottom: 379px;
+      width: 203px;
+      height: 212px;
     }
     #jewelry_B20 {
       position: absolute;
       right: 621px;
       bottom: 288px;
+      width: 444px;
+      height: 252px;
     }
     #jewelry_B23 {
       position: absolute;
       right: 1385px;
       bottom: 0px;
+      width: 534px;
+      height: 462px;
     }
     #jewelry_B26 {
       position: absolute;
       right: 1066px;
       bottom: 0px;
+      width: 274px;
+      height: 379px;
     }
     #jewelry_B27 {
       position: absolute;
       right: 350px;
       bottom: 186px;
+      width: 273px;
+      height: 192px;
     }
   }
   .hover_show {
     position: fixed;
     // border: 1px solid black;
-    // top: 0;
-    // left: 100px;
-    // width: 300px;
-    // height: 600px;
-    // /deep/ img {
-    //   width: 300px;
-    //   height: 400px;
-    // }
+    width: 504px;
+    height: 518px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>
