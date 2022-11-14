@@ -2,7 +2,7 @@
  * @Author       : YH000354
  * @Date         : 2022-04-01 18:18:07
  * @LastEditors: HopeNotDead 869132116@qq.com
- * @LastEditTime: 2022-11-14 17:20:33
+ * @LastEditTime: 2022-11-14 17:30:30
  * @FilePath     : \warmletheret_website\src\views\home\index.vue
 -->
 <template>
@@ -110,6 +110,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+// 电脑端
 @media screen and (min-width: 800px) {
   .home_page {
     ::-webkit-scrollbar {
@@ -120,7 +121,7 @@ export default {
     height: 100%;
     width: 100%;
     font-size: 16px;
-    background-color: ;
+    background-color: #fbfbfb;
     header {
       z-index: 2;
       display: flex;
@@ -205,6 +206,7 @@ export default {
     }
   }
 }
+// 手机端
 @media screen and (max-width: 800px) {
   .phone {
     background-color: #fbfbfb;
