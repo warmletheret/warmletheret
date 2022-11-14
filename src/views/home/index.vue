@@ -2,7 +2,7 @@
  * @Author       : YH000354
  * @Date         : 2022-04-01 18:18:07
  * @LastEditors: HopeNotDead 869132116@qq.com
- * @LastEditTime: 2022-11-14 17:30:30
+ * @LastEditTime: 2022-11-14 17:40:16
  * @FilePath     : \warmletheret_website\src\views\home\index.vue
 -->
 <template>
@@ -118,7 +118,7 @@ export default {
       display: none;
     }
     position: relative;
-    height: 100%;
+    // height: 100%;
     width: 100%;
     font-size: 16px;
     background-color: #fbfbfb;
