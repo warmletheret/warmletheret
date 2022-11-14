@@ -1,8 +1,8 @@
 /*
  * @Author       : YH000354
  * @Date         : 2022-03-30 18:34:21
- * @LastEditors  : YH000354
- * @LastEditTime : 2022-06-16 09:24:57
+ * @LastEditors: HopeNotDead 869132116@qq.com
+ * @LastEditTime: 2022-11-14 17:21:49
  * @FilePath     : \warmletheret_website\src\router\index.ts
  */
 import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router'
